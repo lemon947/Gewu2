@@ -34,7 +34,7 @@ export default function Header() {
     <header className="site-header">
       <div className="header-inner">
         <Link className="brand" to="/" aria-label="格物·科学语料库首页">
-          <img className="home-design-logo" src="/images/home-logo-design.png" alt="" />
+          <img className="home-design-logo" src={`${import.meta.env.BASE_URL}images/home-logo-design.png`} alt="" />
           <LogoMark size={44} />
           <span className="brand-copy">
             <strong>格物 · 科学语料库</strong>

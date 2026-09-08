@@ -342,7 +342,7 @@ export default function DemandSquare() {
               <div className="demand-detail-left">
                 <div className="demand-detail-poster-wrap">
                   <div className="demand-detail-brand">
-                    <img src="/images/logo-final.png" alt="" />
+                    <img src={`${import.meta.env.BASE_URL}images/logo-final.png`} alt="" />
                     <span>格物 · 科学语料共建共享平台</span>
                   </div>
                   <span className="demand-detail-page-count">1/4</span>

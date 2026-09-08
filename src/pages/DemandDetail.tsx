@@ -134,7 +134,7 @@ export default function DemandDetail() {
       <section className="demand-detail-page-shell">
         <div className="demand-detail-main-poster">
           <div className="demand-detail-brand">
-            <img src="/images/logo-final.png" alt="" />
+            <img src={`${import.meta.env.BASE_URL}images/logo-final.png`} alt="" />
             <span>格物 · 科学语料共建共享平台</span>
           </div>
           <span className="demand-detail-page-count">1/4</span>
