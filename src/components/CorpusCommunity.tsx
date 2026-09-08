@@ -56,28 +56,28 @@ const categoryDefinitions: CategoryDefinition[] = [
     title: '高校',
     shortTitle: '高校',
     icon: GraduationCap,
-    national: { corpusSets: 428, corpusRows: 46.8, corpusScale: 18.6 },
+    national: { corpusSets: 360, corpusRows: 38.92, corpusScale: 16.78 },
   },
   {
     key: 'enterprise',
     title: '企业',
     shortTitle: '企业',
     icon: Building2,
-    national: { corpusSets: 186, corpusRows: 21.4, corpusScale: 8.9 },
+    national: { corpusSets: 245, corpusRows: 27.64, corpusScale: 10.86 },
   },
   {
     key: 'institute',
     title: '新型研发机构',
     shortTitle: '研发机构',
     icon: FlaskConical,
-    national: { corpusSets: 152, corpusRows: 14.7, corpusScale: 7.1 },
+    national: { corpusSets: 172, corpusRows: 15.58, corpusScale: 7.43 },
   },
   {
     key: 'individual',
     title: '个人',
     shortTitle: '个人',
     icon: UsersRound,
-    national: { corpusSets: 134, corpusRows: 9.1, corpusScale: 3.4 },
+    national: { corpusSets: 123, corpusRows: 9.86, corpusScale: 2.93 },
   },
 ]
 
@@ -235,9 +235,9 @@ function getProvinceMetric(province: string, definition: CategoryDefinition): Co
 
 function formatMetric(metric: CommunityMetric) {
   return {
-    corpusSets: `${metric.corpusSets}个`,
-    corpusRows: `${metric.corpusRows.toFixed(metric.corpusRows >= 10 ? 1 : 2)}亿条`,
-    corpusScale: `${metric.corpusScale.toFixed(metric.corpusScale >= 10 ? 1 : 2)}PB`,
+    corpusSets: { value: `${metric.corpusSets}`, unit: '个' },
+    corpusRows: { value: metric.corpusRows.toFixed(metric.corpusRows >= 10 ? 1 : 2), unit: '亿条' },
+    corpusScale: { value: metric.corpusScale.toFixed(metric.corpusScale >= 10 ? 1 : 2), unit: 'PB' },
   }
 }
 
@@ -300,7 +300,7 @@ export default function CorpusCommunity() {
     <section className="corpus-community-section" aria-labelledby="community-title">
       <div className="community-section-inner">
         <header className="community-section-heading">
-          <h2 id="community-title">数据社区 · 共建共享</h2>
+                <h2 id="community-title"><span>数据社区</span><i>·</i><strong>共建共享</strong></h2>
         </header>
 
         <div className="community-layout">
@@ -398,7 +398,6 @@ export default function CorpusCommunity() {
           <aside className="community-summary-panel" aria-live="polite">
             <div className="community-summary-heading">
               <div>
-                <span>{activeProvince ? '省级数据' : '全国数据'}</span>
                 <h3>{activeProvince ? `${activeProvince}汇总` : '全国汇总'}</h3>
               </div>
             </div>
@@ -419,9 +418,9 @@ export default function CorpusCommunity() {
                       </div>
                     </header>
                     <dl>
-                      <div><dt>语料集</dt><dd>{formatted.corpusSets}</dd></div>
-                      <div><dt>语料条数</dt><dd>{formatted.corpusRows}</dd></div>
-                      <div><dt>语料规模</dt><dd>{formatted.corpusScale}</dd></div>
+                      <div><dt>语料集</dt><dd><strong>{formatted.corpusSets.value}</strong><span>{formatted.corpusSets.unit}</span></dd></div>
+                      <div><dt>语料条数</dt><dd><strong>{formatted.corpusRows.value}</strong><span>{formatted.corpusRows.unit}</span></dd></div>
+                      <div><dt>语料规模</dt><dd><strong>{formatted.corpusScale.value}</strong><span>{formatted.corpusScale.unit}</span></dd></div>
                     </dl>
                   </article>
                 )

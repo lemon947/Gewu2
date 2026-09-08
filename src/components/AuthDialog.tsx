@@ -123,6 +123,13 @@ export default function AuthDialog() {
         </button>
 
         <aside className="auth-brand-panel">
+          <div className="auth-brand-logo">
+            <LogoMark size={54} />
+            <div>
+              <strong>格物 · 科学语料库</strong>
+              <span>GEWU SCIENTIFIC CORPUS</span>
+            </div>
+          </div>
           <div className="auth-brand-copy">
             <h2>AI for Science</h2>
             <p>聚集高质量科学语料，服务教学与科研创新</p>

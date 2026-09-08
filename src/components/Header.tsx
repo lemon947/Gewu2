@@ -8,8 +8,8 @@ const navItems = [
   { label: '首页', to: '/' },
   { label: '语料检索', to: '/search' },
   { label: '语料上传', to: '/upload' },
-  { label: '需求广场', to: '/demands' },
   { label: '工具链', to: '/tools' },
+  { label: '需求广场', to: '/demands' },
   { label: '关于我们', to: '/about' },
 ]
 
@@ -34,6 +34,7 @@ export default function Header() {
     <header className="site-header">
       <div className="header-inner">
         <Link className="brand" to="/" aria-label="格物·科学语料库首页">
+          <img className="home-design-logo" src="/images/home-logo-design.png" alt="" />
           <LogoMark size={44} />
           <span className="brand-copy">
             <strong>格物 · 科学语料库</strong>
@@ -80,7 +81,7 @@ export default function Header() {
             </div>
           ) : (
             <button type="button" className="login-trigger" onClick={() => openAuth()}>
-              <UserRound size={17} />登录
+              <UserRound size={17} /><span>登录体验</span>
             </button>
           )}
           <button

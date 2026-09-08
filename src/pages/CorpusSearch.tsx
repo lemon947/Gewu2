@@ -1,4 +1,4 @@
-import { type FormEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { type CSSProperties, type FormEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   Building2,
   CalendarDays,
@@ -177,6 +177,44 @@ const emptyFacetFilters: CorpusFilterState = {
 
 const corpusSizeBuckets = ['1千以下', '1千-1万', '1万-10万', '10万-100万', '100万以上']
 const storageBuckets = ['<500GB', '500GB-1TB', '1-2TB', '>2TB']
+const recordCoverMap: Record<string, string> = {
+  'math-01': 'math-3.png',
+  'physics-01': 'physics-4.png',
+  'chem-01': 'chem-2.png',
+  'astro-01': 'astro-1.png',
+  'geo-01': 'geo-2.png',
+  'bio-01': 'bio-2.png',
+  'math-02': 'math-2.png',
+  'physics-02': 'physics-2.png',
+  'chem-02': 'quality-views-2.png',
+  'astro-02': 'astro-2.png',
+  'geo-02': 'geo-1.png',
+  'bio-02': 'quality-latest-1.png',
+  'math-03': 'math-1.png',
+  'physics-03': 'physics-3.png',
+  'chem-03': 'quality-views-3.png',
+  'astro-03': 'astro-3.png',
+  'geo-03': 'quality-latest-4.png',
+  'bio-03': 'bio-1.png',
+  'math-04': 'math-4.png',
+  'physics-04': 'quality-usage-2.png',
+  'chem-04': 'quality-latest-5.png',
+  'astro-04': 'astro-4.png',
+  'geo-04': 'quality-latest-3.png',
+  'bio-04': 'quality-views-1.png',
+}
+const subjectCoverFallback: Record<string, string> = {
+  数学: 'math-1.png',
+  物理: 'physics-1.png',
+  化学: 'chem-1.png',
+  天文: 'astro-1.png',
+  地理: 'geo-2.png',
+  生物: 'bio-1.png',
+}
+
+function coverForRecord(item: CorpusRecord) {
+  return `${import.meta.env.BASE_URL}images/corpus-covers/${recordCoverMap[item.id] ?? subjectCoverFallback[item.subject] ?? 'quality-latest-1.png'}`
+}
 
 export function recordDisplayMeta(item: CorpusRecord) {
   const index = Math.max(0, corpusRecords.findIndex((record) => record.id === item.id))
@@ -740,7 +778,11 @@ export default function CorpusSearch({ pageType = 'search' }: { pageType?: 'sear
               const cardTarget = `/search/datasets/${item.id}`
               return (
               <Link className="catalog-corpus-card" to={cardTarget} target="_blank" rel="noreferrer" key={item.id}>
-                <div className="quality-card-visual catalog-card-visual" aria-hidden="true">
+                <div
+                  className="quality-card-visual catalog-card-visual"
+                  style={{ '--corpus-cover': `url("${coverForRecord(item)}")` } as CSSProperties}
+                  aria-hidden="true"
+                >
                   <span className={`card-status-overlay ${item.openness === '不公开' ? 'is-private' : 'is-partial'}`}>{item.openness === '不公开' ? '不公开' : '公开'}</span>
                   <span className="visual-line visual-line-one" />
                   <span className="visual-line visual-line-two" />
